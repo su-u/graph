@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pydub import AudioSegment as AS
 
+igfont = {'family':'Yu Gothic'}
+
 data = AS.from_mp3("440Hz-64.mp3")
 l = data.get_array_of_samples()[-1000:]
 
@@ -13,19 +15,27 @@ size = 1000
 dt2 = np.fft.fft(l)
 frq = np.fft.fftfreq(size, d)
 
-plt.subplot(2,1,1)
-plt.title("FFT")
-plt.plot(l)
-plt.subplot(2,1,2)
-plt.title("FFT")
-plt.plot(frq, abs(dt2))
-plt.axis([0, 800, 0,max(abs(dt2)) + 100000])
+N = 100
+dt = 0.01
+
+freq = 5
+amp = 1
+t = np.arange(0, N*dt, dt) # 時間軸
+f = amp * np.sin(2*np.pi*freq*t) # 信号（周波数10、振幅1の正弦波）
+
+#plt.subplot(2,1,1)
+plt.title("sin波", **igfont)
+plt.plot(f)
+#plt.subplot(2,1,2)
+#plt.title("FFT")
+#plt.plot(frq, abs(dt2))
+#plt.axis([0, 800, 0,max(abs(dt2)) + 100000])
 
 plt.show()
 
+f = np.sin()
+f = t - np.floor(t)
 
-
-#igfont = {'family':'Yu Gothic'}
 #N = 1000
 #dt = 0.01
 #freq = 5
