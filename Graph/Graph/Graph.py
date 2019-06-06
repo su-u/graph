@@ -6,13 +6,13 @@ igfont = {'family':'Yu Gothic'}
 
 #data = AS.from_mp3("440Hz-64.mp3")
 data = AS.from_wav("a_1.wav")
-l = data.get_array_of_samples()[-1000:]
+l = data.get_array_of_samples()
 
 #データ読み込み時
 fs = data.frame_rate
 print(fs)
 d = 1.0 / fs
-size = 1000
+size = 13078
 
 dt2 = np.fft.fft(l)
 frq = np.fft.fftfreq(size, d)
@@ -24,7 +24,7 @@ plt.plot(l)
 plt.subplot(2,1,2)
 plt.title("周波数領域", **igfont)
 plt.plot(frq, abs(dt2))
-plt.axis([0, fs/4.0, 0,max(abs(dt2)) + 100000])
+plt.axis([0, fs/10.0, 0,max(abs(dt2)) + 100000])
 
 plt.show()
 
